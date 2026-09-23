@@ -7819,5 +7819,21 @@ class Component extends DCLogic {
   }
 }
 </script>
+<script>
+(function(){
+  var W=1504,H=964;
+  function fit(){
+    var s=Math.min(window.innerWidth/W,window.innerHeight/H,1.5);
+    document.body.style.zoom=s;
+  }
+  document.documentElement.style.background='var(--ds-background-subtle)';
+  document.documentElement.style.overflow='hidden';
+  document.body.style.background='var(--ds-background-subtle)';
+  document.body.style.display='flex';
+  document.body.style.justifyContent='center';
+  window.addEventListener('resize',fit);
+  fit();
+})();
+</script>
 </body>
 </html>
