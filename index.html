@@ -5929,6 +5929,10 @@ textarea.inp{height:auto;padding:var(--ds-field-padding-y-md) var(--ds-input-pad
 .tb:hover{color:var(--ds-tabs-label-color-hover)}
 .tb.on{color:var(--ds-tabs-label-color-active);border-bottom-color:var(--ds-tabs-indicator-fill-active)}
 .kpi{text-align:left;display:flex;flex-direction:column;gap:6px;padding:var(--ds-card-container-padding-default);border:var(--ds-card-border-width-default) solid var(--ds-card-border-color-outlined);background:var(--ds-card-bg-default);border-radius:var(--ds-card-radius-default)}
+.metrics{display:flex;background:var(--ds-card-bg-default);border:var(--ds-card-border-width-default) solid var(--ds-card-border-color-outlined);border-radius:var(--ds-card-radius-default);overflow:hidden}
+.metrics>button{flex:1;min-width:0;text-align:left;display:flex;flex-direction:column;gap:4px;padding:16px 18px;border:0;border-left:var(--ds-card-border-width-default) solid var(--ds-border-subtle);background:transparent}
+.metrics>button:first-child{border-left:0}
+.metrics>button:hover{background:var(--ds-surface-hover)}
 button.kpi:hover{border-color:var(--ds-card-interactive-border-color-hover)}
 .kl{font-size:var(--ds-body-font-size-sm);color:var(--ds-content-subtle);font-weight:var(--ds-body-font-weight-medium)}
 .kv{font-family:var(--ds-body-font-family-sans);font-size:var(--ds-body-font-size-5xl);line-height:1;color:var(--ds-content-strong);font-weight:var(--ds-body-font-weight-bold)}
@@ -5956,13 +5960,16 @@ button.kpi:hover{border-color:var(--ds-card-interactive-border-color-hover)}
 @keyframes pulse{0%,80%,100%{opacity:.25}40%{opacity:1}}
 .techgrid{position:absolute;inset:0;pointer-events:none;background-image:repeating-linear-gradient(0deg,var(--ds-overlay-white-5) 0,var(--ds-overlay-white-5) 1px,transparent 1px,transparent 64px),repeating-linear-gradient(90deg,var(--ds-overlay-white-5) 0,var(--ds-overlay-white-5) 1px,transparent 1px,transparent 64px)}
 .ptc{position:absolute;background:var(--ds-color-brand-400);animation:ptcfade 5s ease-in-out infinite}
+.techgrid-l{position:absolute;inset:0;pointer-events:none;background-image:repeating-linear-gradient(0deg,var(--ds-border-subtle) 0,var(--ds-border-subtle) 1px,transparent 1px,transparent 48px),repeating-linear-gradient(90deg,var(--ds-border-subtle) 0,var(--ds-border-subtle) 1px,transparent 1px,transparent 48px)}
+.ptc-l{position:absolute;background:var(--ds-color-brand-500);animation:ptcfade 5s ease-in-out infinite}
 @keyframes ptcfade{0%,100%{opacity:.15}50%{opacity:.7}}
-@media (prefers-reduced-motion:reduce){.hdot,.ptc{animation:none}}
+@media (prefers-reduced-motion:reduce){.hdot,.ptc,.ptc-l{animation:none}}
 .mk{width:100%;display:flex;flex-direction:column;gap:14px}
 .f2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
 </style>
 </helmet>
-<div style="position:relative;width:1440px;height:900px;overflow:hidden;background:var(--ds-background-default);color:var(--ds-content-default);font-family:var(--ds-body-font-family-sans);">
+<div style="width:1504px;height:964px;background:var(--ds-background-subtle);display:flex;align-items:center;justify-content:center;">
+<div style="position:relative;width:1440px;height:900px;overflow:hidden;border-radius:var(--ds-radius-xl);box-shadow:var(--ds-shadow-xl);background:var(--ds-background-default);color:var(--ds-content-default);font-family:var(--ds-body-font-family-sans);">
 
 <sc-if value="{{ inLogin }}" hint-placeholder-val="{{ false }}">
 <div style="display:flex;width:1440px;height:900px;">
@@ -6098,18 +6105,73 @@ button.kpi:hover{border-color:var(--ds-card-interactive-border-color-hover)}
 
 <sc-if value="{{ sc.dashboard }}" hint-placeholder-val="{{ false }}">
 <div>
-  <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:24px;">
-    <div><div class="eyebrow">{{meRole}}</div><h1 class="ttl">{{dash.title}}</h1></div>
-    <div class="muted">{{dash.data}}</div>
-  </div>
-  <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-bottom:24px;">
-    <sc-for list="{{dash.cards}}" as="c" hint-placeholder-count="4">
-      <button type="button" class="kpi" onClick="{{c.go}}">
-        <span class="kl">{{c.label}}</span>
-        <span class="kv {{c.tone}}">{{c.valor}}</span>
-        <span class="ks">{{c.sub}}</span>
-      </button>
-    </sc-for>
+  <div style="display:flex;gap:24px;height:300px;margin-bottom:28px;">
+    <div style="position:relative;flex:1;min-width:0;border:var(--ds-card-border-width-default) solid var(--ds-card-border-color-outlined);border-radius:var(--ds-card-radius-default);background:var(--ds-surface-default);overflow:hidden;">
+      <div class="techgrid-l" aria-hidden="true"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:3px;height:3px;top:214px;left:303px;animation-delay:0.3s;"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:3px;height:3px;top:132px;left:251px;animation-delay:4.1s;"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:7px;height:7px;top:216px;left:354px;animation-delay:0.3s;"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:4px;height:4px;top:196px;left:416px;animation-delay:4.3s;"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:3px;height:3px;top:82px;left:269px;animation-delay:2.6s;"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:3px;height:3px;top:219px;left:239px;animation-delay:2.5s;"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:4px;height:4px;top:213px;left:400px;animation-delay:2.6s;"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:4px;height:4px;top:114px;left:238px;animation-delay:2.6s;"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:4px;height:4px;top:87px;left:280px;animation-delay:2.5s;"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:7px;height:7px;top:90px;left:267px;animation-delay:3.5s;"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:6px;height:6px;top:174px;left:220px;animation-delay:1.3s;"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:5px;height:5px;top:54px;left:368px;animation-delay:0.4s;"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:6px;height:6px;top:234px;left:308px;animation-delay:3.3s;"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:4px;height:4px;top:261px;left:309px;animation-delay:2.3s;"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:8px;height:8px;top:220px;left:383px;animation-delay:1.9s;"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:6px;height:6px;top:134px;left:409px;animation-delay:1.5s;"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:8px;height:8px;top:222px;left:281px;animation-delay:0.3s;"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:4px;height:4px;top:193px;left:408px;animation-delay:0.3s;"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:8px;height:8px;top:58px;left:306px;animation-delay:1.3s;"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:3px;height:3px;top:214px;left:258px;animation-delay:4.2s;"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:8px;height:8px;top:225px;left:275px;animation-delay:0.3s;"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:5px;height:5px;top:81px;left:347px;animation-delay:1.8s;"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:4px;height:4px;top:106px;left:422px;animation-delay:2.0s;"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:7px;height:7px;top:117px;left:225px;animation-delay:3.9s;"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:6px;height:6px;top:233px;left:322px;animation-delay:3.1s;"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:4px;height:4px;top:201px;left:278px;animation-delay:0.8s;"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:8px;height:8px;top:225px;left:347px;animation-delay:3.7s;"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:4px;height:4px;top:221px;left:373px;animation-delay:1.9s;"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:4px;height:4px;top:218px;left:269px;animation-delay:3.1s;"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:3px;height:3px;top:141px;left:235px;animation-delay:2.1s;"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:7px;height:7px;top:68px;left:422px;animation-delay:1.8s;"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:7px;height:7px;top:204px;left:263px;animation-delay:0.3s;"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:4px;height:4px;top:180px;left:411px;animation-delay:0.5s;"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:4px;height:4px;top:109px;left:278px;animation-delay:2.4s;"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:4px;height:4px;top:120px;left:436px;animation-delay:3.9s;"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:5px;height:5px;top:103px;left:280px;animation-delay:4.3s;"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:4px;height:4px;top:97px;left:262px;animation-delay:3.8s;"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:8px;height:8px;top:146px;left:433px;animation-delay:1.4s;"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:3px;height:3px;top:217px;left:112px;animation-delay:1.2s;opacity:.5"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:2px;height:2px;top:59px;left:547px;animation-delay:0.9s;opacity:.5"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:3px;height:3px;top:113px;left:625px;animation-delay:2.4s;opacity:.5"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:3px;height:3px;top:158px;left:37px;animation-delay:3.9s;opacity:.5"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:3px;height:3px;top:86px;left:463px;animation-delay:4.1s;opacity:.5"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:3px;height:3px;top:75px;left:246px;animation-delay:3.5s;opacity:.5"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:2px;height:2px;top:75px;left:230px;animation-delay:3.6s;opacity:.5"></div>
+      <div class="ptc-l" aria-hidden="true" style="width:2px;height:2px;top:215px;left:540px;animation-delay:0.9s;opacity:.5"></div>
+      <div class="muted" style="position:absolute;left:20px;bottom:16px;font-size:12px;">{{dash.data}}</div>
+    </div>
+    <div style="width:420px;flex:none;display:flex;flex-direction:column;justify-content:space-between;">
+      <div>
+        <div class="eyebrow">{{meRole}}</div>
+        <h1 class="ttl" style="font-size:40px;">{{dash.title}}</h1>
+        <p class="muted" style="margin-top:12px;font-size:15px;line-height:1.5;">{{dash.lead}}</p>
+      </div>
+      <button type="button" class="btn" style="align-self:flex-start;" onClick="{{dash.ctaGo}}">{{dash.ctaLabel}}</button>
+      <div class="metrics">
+        <sc-for list="{{dash.cards}}" as="c" hint-placeholder-count="4">
+          <button type="button" onClick="{{c.go}}">
+            <span class="kl" style="font-size:11px;">{{c.label}}</span>
+            <span class="kv {{c.tone}}" style="font-size:26px;">{{c.valor}}</span>
+          </button>
+        </sc-for>
+      </div>
+    </div>
   </div>
 
   <sc-if value="{{ dash.isAdmin }}" hint-placeholder-val="{{ false }}">
@@ -6855,8 +6917,9 @@ button.kpi:hover{border-color:var(--ds-card-interactive-border-color-hover)}
 <sc-if value="{{ toastOn }}" hint-placeholder-val="{{ false }}"><div class="toast" role="status">{{toast}}</div></sc-if>
 
 </div>
+</div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1504,"height":964}}'>
 const HOJE = '2026-09-21';
 const pad = (n) => String(n).padStart(2, '0');
 const addD = (iso, n) => { const d = new Date(iso + 'T12:00:00'); d.setDate(d.getDate() + n); return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); };
@@ -7509,8 +7572,12 @@ class Component extends DCLogic {
       { label: 'Pendências em aberto', valor: pendN, sub: 'Nos processos visíveis', tone: '', go: () => goList() }
     ];
     const pr = ativos.filter((p) => p.prazo).sort((a, b) => (a.prazo < b.prazo ? -1 : 1)).slice(0, 5).map(rowOf);
+    const leadTxt = isAdm
+      ? ('Gerir utilizadores, perfis e auditoria com clareza.')
+      : (venc.length ? ('Tem ' + venc.length + (venc.length === 1 ? ' prazo vencido' : ' prazos vencidos') + ' a exigir atenção imediata.') : (semana.length ? ('Tem ' + semana.length + (semana.length === 1 ? ' prazo' : ' prazos') + ' a vencer esta semana.') : 'Todos os processos estão dentro do prazo.'));
     V.dash = {
-      title: 'Olá, ' + me.user.split(' ')[0], data: 'Segunda-feira, 21 de setembro de 2026', cards: cards, isAdmin: isAdm, notAdmin: !isAdm,
+      title: 'Olá, ' + me.user.split(' ')[0] + '.', data: 'Segunda-feira, 21 de setembro de 2026', cards: cards, isAdmin: isAdm, notAdmin: !isAdm,
+      lead: leadTxt, ctaLabel: isAdm ? 'Ver auditoria' : 'Ver processos', ctaGo: isAdm ? (() => this.go('auditoria')) : (() => goList()),
       listTitle: titles[s.role] || 'Processos que precisam da minha ação', acao: acao, acaoEmpty: acao.length === 0,
       shortcuts: shortcuts.slice(0, 5), prazos: pr, prazosEmpty: pr.length === 0,
       eventos: s.audit.slice(0, 6).map((a) => ({ ts: fmtTs(a.ts), user: a.user, acao: a.acao, ent: a.ent })), goAudit: () => this.go('auditoria')
